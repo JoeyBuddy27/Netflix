@@ -1,0 +1,101 @@
+.row {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.rowPoster,
+.largeRowPoster {
+	width: 100%;
+	object-fit: contain;
+	margin-right: 10px;
+	transition: transform 450ms;
+	opacity: 0.95;
+}
+
+.rowPoster {
+	max-height: 120px;
+}
+
+.largeRowPoster {
+	max-height: 250px;
+}
+
+@media (max-width: 600px) {
+	.rowPoster {
+		max-height: 110px;
+	}
+	.largeRowPoster {
+		max-height: 180px;
+	}
+	.row {
+		margin-left: 0px;
+		margin-right: 0px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.rowPosters {
+		padding: none !important;
+	}
+}
+
+.rowPoster:hover {
+	transform: scale(1.08);
+	opacity: 1;
+}
+
+.largeRowPoster:hover {
+	transform: scale(1.09);
+	opacity: 1;
+}
+
+.rowPosters {
+	display: flex;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	padding: 20px 15px 15px 0px;
+}
+
+.rowPosters::-webkit-scrollbar {
+	display: none;
+}
+
+h2 {
+	color: white;
+}
+
+.movieClick {
+	width: 100%;
+}
+
+.movieInfo {
+	color: white;
+	padding: 20px;
+}
+
+.closeButton {
+	margin-top: 5px;
+	color: #ffff;
+	font-weight: 500;
+	font-size: 12px;
+	padding: 5px 10px 5px 10px;
+	border: none;
+	border-radius: 5px;
+	background: rgba(50, 50, 50, 0.6);
+	cursor: pointer;
+	float: right;
+}
+
+.closeButton:hover {
+	color: #000;
+	background-color: #e6e6e6;
+	transition: all 0.5s;
+}
+
+.rating {
+	border-radius: 40%;
+	width: 40px;
+	height: 40px;
+	border: 1px solid red;
+	font-weight: 600;
+	font-size: 18px;
+}

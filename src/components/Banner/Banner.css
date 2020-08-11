@@ -1,0 +1,107 @@
+header {
+	height: 450px;
+}
+
+.bannerContents {
+	padding: 100px;
+}
+
+@media (max-width: 600px) {
+	header {
+		height: 300px;
+	}
+	.bannerContents {
+		padding: 10px;
+		text-align: center;
+	}
+	.overview {
+		text-align: center;
+		display: none;
+	}
+	.logo {
+		width: 25px;
+	}
+	.bannerTitle {
+		font-size: 2rem;
+		margin-top: 75px;
+	}
+	.bannerFadeBottom {
+		height: 100px;
+		margin-top: -25px;
+	}
+}
+
+@media (min-width: 1200px) {
+	header {
+		background-position: center 0px !important;
+	}
+}
+
+.bannerTitle {
+	color: white;
+	font-size: 3rem;
+	font-weight: 800;
+}
+
+.bannerPicture {
+	height: 450px;
+	width: 100%;
+	object-fit: cover;
+}
+
+.overview {
+	color: white;
+	margin-top: 10px;
+	width: 50%;
+	font-weight: bold;
+	font-size: 0.8rem;
+	line-height: 1.3rem;
+	background: rgba(0, 0, 0, 0.07);
+	border-radius: 10px;
+	box-sizing: border-box;
+}
+
+.bannerButton {
+	margin-top: 10px;
+	color: #ffff;
+	font-weight: 700;
+	font-size: 15px;
+	padding: 10px 20px 10px 20px;
+	border: none;
+	margin-right: 5px;
+	border-radius: 5px;
+	background: rgba(50, 50, 50, 0.6);
+	cursor: pointer;
+}
+
+.bannerButton:hover {
+	color: #000;
+	background-color: #e6e6e6;
+	transition: all 0.5s;
+}
+
+.logo {
+	width: 100px;
+	padding: 10px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.logo2 {
+	width: 100px;
+	padding: 10px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.bannerFadeBottom {
+	height: 120px;
+	background-image: linear-gradient(
+		180deg,
+		transparent,
+		rgba(37, 37, 37, 0.5),
+		#111
+	);
+}
