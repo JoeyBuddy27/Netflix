@@ -4,6 +4,7 @@ import Row from "../../components/Row/Row";
 import Banner from "../../components/Banner/Banner";
 import Nav from "../../components/Nav/Nav";
 import { AvatarContext, UsernameContext } from "../../store/store.js";
+import Grid from "@material-ui/core/Grid";
 
 const Browse = () => {
   const { avatar } = useContext(AvatarContext);
@@ -20,6 +21,7 @@ const Browse = () => {
       <Banner />
       <br />
       <br />
+
       <Row
         title={requests[0].titleOriginals}
         fetchUrl={requests[0].urlOriginals}

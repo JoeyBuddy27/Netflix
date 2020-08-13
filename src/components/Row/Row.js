@@ -101,13 +101,7 @@ const Row = (props) => {
 								className="closeButton"
 								onClick={closeHandler}
 							>
-								Close{" "}
-							</button>
-							<button
-								className="closeButton"
-								onClick={() => addListHandler()}
-							>
-								{!added ? "+ My List" : "Added"}
+								Close
 							</button>
 							<h1 className="rowTitle">{movieTitle}</h1>
 							<p>
@@ -122,35 +116,47 @@ const Row = (props) => {
 					</Grid>
 				</React.Fragment>
 			)}
-
 			<h2 className="rowTitle">{props.title}</h2>
 			<div className="rowPosters">
 				{movies.map((movie) =>
 					movie.backdrop_path !== null ? (
 						<React.Fragment>
-							<img
-								className={
-									isLargeRow ? "largeRowPoster" : "rowPoster"
-								}
-								key={movie.id}
-								src={`${baseUrl}${
-									isLargeRow
-										? movie.poster_path
-										: movie.backdrop_path
-								}`}
-								alt={movie.name}
-								onClick={() => clickHandler(movie)}
-							/>
-							}
+							{isLargeRow ? (
+								<img
+									className={
+										isLargeRow
+											? "largeRowPoster"
+											: "rowPoster"
+									}
+									key={movie.id}
+									src={`${baseUrl}${
+										isLargeRow
+											? movie.poster_path
+											: movie.backdrop_path
+									}`}
+									alt={movie.name}
+									onClick={() => clickHandler(movie)}
+								/>
+							) : (
+								<img
+									className={
+										isLargeRow
+											? "largeRowPoster"
+											: "rowPoster"
+									}
+									key={movie.id}
+									src={`${baseUrl}${
+										isLargeRow
+											? movie.poster_path
+											: movie.backdrop_path
+									}`}
+									alt={movie.name}
+									onClick={() => clickHandler(movie)}
+								/>
+							)}
 						</React.Fragment>
 					) : null
 				)}
-				<button
-					className="closeButton"
-					onClick={(movie) => addListHandler(movie)}
-				>
-					{added}
-				</button>
 			</div>
 		</div>
 	);
