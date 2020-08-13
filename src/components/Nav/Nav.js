@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import Logo from "../../netflixLogo.png";
-import Avatar from "../../netflixIcon.png";
+import { withRouter } from "react-router-dom";
 
 const Nav = (props) => {
 	const [show, handleShow] = useState(false);
+	const [logout, setLogout] = useState(false);
 
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
@@ -13,15 +14,30 @@ const Nav = (props) => {
 			} else handleShow(false);
 		});
 		return () => {
-			window.removeEventListener("scroll");
+			window.removeEventListener("scroll", handleShow);
 		};
 	}, []);
 	return (
 		<div className={`nav ${show && "navBlack"}`}>
 			<img className="navLogo" src={Logo} alt="Netflix Logo" />
-			<img className="navAvatar" src={Avatar} alt="Netflix Avatar" />
+			{props.avatar ? (
+				<figure>
+					<img
+						className="navAvatar"
+						src={props.avatar}
+						alt="Netflix Avatar"
+					/>
+					<figcaption
+						onClick={props.history.goBack}
+						onMouseOver={() => setLogout(true)}
+						onMouseOut={() => setLogout(false)}
+					>
+						{logout !== true ? props.username : "Logout"}
+					</figcaption>
+				</figure>
+			) : null}
 		</div>
 	);
 };
 
-export default Nav;
+export default withRouter(Nav);

@@ -9,6 +9,7 @@ const baseUrl = "http://image.tmdb.org/t/p/original/";
 
 const Row = (props) => {
 	const [movies, setMovies] = useState([]);
+	const [listMovies, setListMovies] = useState([]);
 	const { fetchUrl, isLargeRow } = props;
 	const [trailerUrl, setTrailerUrl] = useState("");
 	const [movieInfo, setMovieInfo] = useState("");
@@ -16,22 +17,23 @@ const Row = (props) => {
 	const [show, setShow] = useState(false);
 	const [releaseDate, setReleaseDate] = useState("");
 	const [rating, setRating] = useState("");
+	const [added, setAdded] = useState("+ My List");
 
 	useEffect(() => {
 		async function fetchData() {
 			const request = await axios.get(fetchUrl);
 			setMovies(request.data.results);
-			console.log(request.data.results);
+			setListMovies(request.data.results);
 			return request;
 		}
 		fetchData();
 	}, [fetchUrl]); //run once when the Row loads, and don't run again. Can put a dependecy instead.
 
 	const opts = {
-		height: "400",
-		width: "100%",
+		height: "350",
+		width: "95%",
 		playerVars: {
-			autoplay: 1,
+			autoplay: 0,
 		},
 	};
 
@@ -61,34 +63,37 @@ const Row = (props) => {
 		setTrailerUrl("");
 	};
 
+	const scrollTo = (ref) => {
+		if (ref /* + other conditions */) {
+			ref.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	};
+
+	const addListHandler = (movie) => {
+		if (added === "Added!") {
+			setAdded("+ My List");
+		} else {
+			setAdded("Added!");
+		}
+	};
+
 	return (
 		<div className="row">
-			<h2>{props.title}</h2>
-			<div className="rowPosters">
-				{movies.map((movie) =>
-					movie.backdrop_path !== null ? (
-						<img
-							className={
-								isLargeRow ? "largeRowPoster" : "rowPoster"
-							}
-							key={movie.id}
-							src={`${baseUrl}${
-								isLargeRow
-									? movie.poster_path
-									: movie.backdrop_path
-							}`}
-							alt={movie.name}
-							onClick={() => clickHandler(movie)}
-						/>
-					) : null
-				)}
-			</div>
 			{show && (
 				<React.Fragment>
-					<Grid container xs={12} className="movieClick">
-						<Grid item xs={12} md={6}>
+					<Grid
+						container
+						xs={12}
+						className="movieClick"
+						ref={scrollTo}
+					>
+						<Grid item xs={12} md={6} className="youTube">
 							{trailerUrl && (
-								<YouTube videoId={trailerUrl} opts={opts} />
+								<YouTube
+									videoId={trailerUrl}
+									opts={opts}
+									key={Math.random()}
+								/>
 							)}
 						</Grid>
 						<Grid item xs={12} md={6} className="movieInfo">
@@ -98,7 +103,13 @@ const Row = (props) => {
 							>
 								Close{" "}
 							</button>
-							<h1>{movieTitle} </h1>
+							<button
+								className="closeButton"
+								onClick={() => addListHandler()}
+							>
+								{!added ? "+ My List" : "Added"}
+							</button>
+							<h1 className="rowTitle">{movieTitle}</h1>
 							<p>
 								Released: <b>{releaseDate}</b>
 							</p>{" "}
@@ -111,6 +122,36 @@ const Row = (props) => {
 					</Grid>
 				</React.Fragment>
 			)}
+
+			<h2 className="rowTitle">{props.title}</h2>
+			<div className="rowPosters">
+				{movies.map((movie) =>
+					movie.backdrop_path !== null ? (
+						<React.Fragment>
+							<img
+								className={
+									isLargeRow ? "largeRowPoster" : "rowPoster"
+								}
+								key={movie.id}
+								src={`${baseUrl}${
+									isLargeRow
+										? movie.poster_path
+										: movie.backdrop_path
+								}`}
+								alt={movie.name}
+								onClick={() => clickHandler(movie)}
+							/>
+							}
+						</React.Fragment>
+					) : null
+				)}
+				<button
+					className="closeButton"
+					onClick={(movie) => addListHandler(movie)}
+				>
+					{added}
+				</button>
+			</div>
 		</div>
 	);
 };

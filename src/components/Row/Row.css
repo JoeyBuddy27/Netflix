@@ -59,12 +59,14 @@
 	display: none;
 }
 
-h2 {
+.rowTitle {
 	color: white;
+	text-align: left;
 }
 
 .movieClick {
 	width: 100%;
+	padding-top: 100px;
 }
 
 .movieInfo {
@@ -72,8 +74,14 @@ h2 {
 	padding: 20px;
 }
 
+.youTube {
+	text-align: center;
+	margin: 0px auto;
+}
+
 .closeButton {
 	margin-top: 5px;
+	margin-right: 5px;
 	color: #ffff;
 	font-weight: 500;
 	font-size: 12px;
@@ -98,4 +106,13 @@ h2 {
 	border: 1px solid red;
 	font-weight: 600;
 	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.posterTitle {
+	color: white;
+	font-weight: 500;
 }

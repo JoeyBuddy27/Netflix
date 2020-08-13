@@ -1,33 +1,21 @@
 import React from "react";
 import classes from "./App.module.css";
-import Row from "./components/Row/Row";
-import Banner from "./components/Banner/Banner";
-import Nav from "./components/Nav/Nav";
-import requests from "./requests.js";
+import Browse from "./containers/Browse/Browse";
+import Landing from "./containers/Landing/Landing";
+import List from "./containers/List/List.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  const myRequests = requests;
-  return (
-    <div className={classes.app}>
-      <Nav />
-      <Banner />
-      <br />
-      <br />
-      <Row
-        title={requests[0].titleOriginals}
-        fetchUrl={requests[0].urlOriginals}
-        isLargeRow={true}
-      />
-
-      {requests.map((movie) => (
-        <Row
-          title={movie.title}
-          fetchUrl={movie.url}
-          key={movie.title + Math.random()}
-        />
-      ))}
-    </div>
-  );
-}
+const App = () => {
+	let routes = (
+		<Router>
+			<Switch>
+				<Route path="/browse" component={Browse} />
+				<Route path="/list" component={List} />
+				<Route exact path="/" component={Landing} />
+			</Switch>
+		</Router>
+	);
+	return <div className={classes.app}>{routes}</div>;
+};
 
 export default App;

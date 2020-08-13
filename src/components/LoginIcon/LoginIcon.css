@@ -1,0 +1,23 @@
+.loginIcon {
+	width: 80%;
+	transition: transform 450ms;
+	outline: solid 0px white;
+	transition: outline 0.1s linear;
+}
+
+.username {
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+}
+
+@media (max-width: 800px) {
+	.loginIcon {
+		width: 100%;
+	}
+}
+
+.loginIcon:hover {
+	outline-width: 5px;
+	transform: scale(1.03);
+}
